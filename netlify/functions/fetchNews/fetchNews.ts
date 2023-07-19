@@ -8,7 +8,7 @@ export const handler = async (event) => {
     const { category, language, country, type, sources } = event.queryStringParameters;
 
     // Base URL for the News API
-    let apiUrl = `https://newsapi.org/v2/${type || 'top-headlines'}?language=en&apiKey=${apiKey}`;
+    let apiUrl = `https://newsapi.org/v2/${type || 'top-headlines'}?${country ? `country=${country}` : "language=en"}&apiKey=${apiKey}`;
 
     // Prepare query parameters based on user preferences
     const queryParams = new URLSearchParams();

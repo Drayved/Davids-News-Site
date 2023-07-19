@@ -11,20 +11,38 @@
   @apply flex justify-around text-white
 }
 
+.categories{
+  @apply cursor-pointer
+}
+
 .header-container{
   @apply bg-blue-500
 }
 
-.news-cards-container{
-  @apply bg-gray-100
-}
-
-.news-cards{
-  @apply border-b-8
-}
-
 .hide-on-big-screen{
   @apply hidden
+}
+
+/* News Cards */
+
+.news-details{
+  @apply mb-10
+}
+
+.news-image{
+  @apply mt-2
+}
+
+.news-title{
+  @apply font-bold my-1
+}
+
+.news-description{
+  @apply my-2
+}
+
+.read-more{
+  @apply font-semibold italic
 }
 
 @media (max-width: 750px) {
