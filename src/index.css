@@ -2,6 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+/* NavBar */
+
+.navbar-container{
+  @apply bg-[#000] h-[30px]
+}
+.navbar-elements{
+  @apply flex justify-around text-white
+}
+
 .header-container{
   @apply bg-blue-500
+}
+
+.news-cards-container{
+  @apply bg-gray-100
+}
+
+.news-cards{
+  @apply border-b-8
+}
+
+.hide-on-big-screen{
+  @apply hidden
+}
+
+@media (max-width: 750px) {
+  .hide-on-mobile {
+    @apply hidden
+  }
+
+  .menu-button {
+    @apply block cursor-pointer w-10 text-white
+  }
+
+  .navbar-elements-dropdown {
+    @apply hidden
+  }
+
+  .navbar-elements-dropdown {
+    @apply flex flex-col  absolute left-0 right-0  bg-[#000] text-white h-[50%] w-[50%] justify-around items-center
+  }
+
+  .navbar-elements{
+    @apply hidden
+  }
+
+  .menu-icon{
+    @apply w-6 ml-2 
+  }
+
+
+  
+  .line {
+    @apply  w-6 h-0.5 bg-white pt-0.5 mb-1.5 relative ml-2
+  }
+  
+  /* Style for the individual lines to create the hamburger icon */
+  .line:nth-child(1) {
+    top: 6px;
+  }
+  
+  .line:nth-child(2) {
+    top: 6px; /* Adjust this value to control the spacing between the lines */
+  }
+  
+  .line:nth-child(3) {
+    top: 6px; /* Adjust this value to control the spacing between the lines */
+  }
+  
+  /* Style for the menu button when it's active (menu is shown) */
+
+  
+
+  
+
 }
