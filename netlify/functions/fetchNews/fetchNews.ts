@@ -2,13 +2,13 @@ import fetch from 'node-fetch';
 
 export const handler = async (event) => {
   try {
-    const apiKey = process.env.VITE_NEWS_KEY ;
+    const apiKey = process.env.VITE_NEWS_KEY;
 
     // Get query parameters from the request
     const { category, language, country, type, sources } = event.queryStringParameters;
 
     // Base URL for the News API
-    let apiUrl = `https://newsapi.org/v2/${type || 'top-headlines'}?${country ? `country=${country}` : "language=en"}&apiKey=${apiKey}`;
+    let apiUrl = `https://newsapi.org/v2/${type || 'top-headlines'}?apiKey=${apiKey}`;
 
     // Prepare query parameters based on user preferences
     const queryParams = new URLSearchParams();
@@ -25,7 +25,10 @@ export const handler = async (event) => {
       queryParams.append('sources', sources);
     }
 
+    // Append query parameters to the API URL
+    apiUrl += '&' + queryParams.toString();
 
+    // Make the API call to the News API
     const response = await fetch(apiUrl);
     const data = await response.json();
 

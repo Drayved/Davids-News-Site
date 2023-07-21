@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const navItems = [
   { name: "World", path: "/world" },
@@ -14,9 +14,11 @@ const navItems = [
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const { subCategory } = useParams(); // Get the subCategory from URL params
 
   const toggleMenu = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
+    console.log('Toggle Menu clicked');
   };
 
   return (
@@ -24,17 +26,21 @@ export default function Navbar() {
       <ul className={`navbar-elements`}>
         {navItems.map((item) => (
           <li key={item.name}>
-            {/* Construct the URL with the category parameter */}
             {item.subCategories ? (
-              <div>
+              <div className="sub-categories">
+                {/* Show the Politics button with the onClick to toggle subcategories */}
                 <span onClick={toggleMenu}>{item.name}</span>
-                <ul className={`navbar-elements-dropdown ${showMenu ? "show" : ""}`}>
-                  {item.subCategories.map((subCategory) => (
-                    <li key={subCategory}>
-                      <Link to={`${item.path}?category=${subCategory}`}>{subCategory}</Link>
-                    </li>
-                  ))}
-                </ul>
+                {showMenu && (
+                  <ul className={`navbar-elements-dropdown `}>
+                    {item.subCategories.map((subCategoryItem) => (
+                      <li className="sub-list" key={subCategoryItem}>
+                        <Link to={`${item.path}/${subCategoryItem}`}>
+                          {subCategoryItem}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ) : (
               <Link to={item.path}>{item.name}</Link>
@@ -56,20 +62,9 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li key={item.name}>
               {/* Construct the URL with the category parameter */}
-              {item.subCategories ? (
-                <div>
-                  <span onClick={toggleMenu}>{item.name}</span>
-                  <ul className={`navbar-elements-dropdown ${showMenu ? "show" : ""}`}>
-                    {item.subCategories.map((subCategory) => (
-                      <li key={subCategory}>
-                        <Link to={`${item.path}?category=${subCategory}`}>{subCategory}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
+             
                 <Link to={item.path}>{item.name}</Link>
-              )}
+             
             </li>
           ))}
         </ul>

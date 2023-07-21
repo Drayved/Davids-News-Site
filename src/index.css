@@ -8,11 +8,7 @@
   @apply bg-[#000] h-[30px]
 }
 .navbar-elements{
-  @apply flex justify-around text-white
-}
-
-.categories{
-  @apply cursor-pointer
+  @apply flex justify-around text-white items-center cursor-pointer
 }
 
 .header-container{
@@ -22,6 +18,20 @@
 .hide-on-big-screen{
   @apply hidden
 }
+
+.sub-categories {
+  @apply relative bg-black 
+}
+
+.sub-list{
+  @apply my-2 h-8 mx-2 
+}
+
+.navbar-elements-dropdown {
+  @apply bg-black absolute
+}
+
+
 
 /* News Cards */
 
@@ -51,7 +61,7 @@
   }
 
   .menu-button {
-    @apply block cursor-pointer w-10 text-white
+    @apply block cursor-pointer w-10 text-white py-0.5 
   }
 
   .navbar-elements-dropdown {
@@ -70,7 +80,9 @@
     @apply w-6 ml-2 
   }
 
-
+  .navbar-container{
+    @apply h-[35px]
+  }
   
   .line {
     @apply  w-6 h-0.5 bg-white pt-0.5 mb-1.5 relative ml-2
