@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import HealthNews from "./HealthNews";
 
 const navItems = [
   { name: "World", path: "/world" },
@@ -19,6 +20,33 @@ export default function Navbar() {
   const toggleMenu = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
     console.log('Toggle Menu clicked');
+  };
+  
+
+  const selectedNavItem = navItems.find((item) => {
+    if (item.subCategories) {
+      return item.subCategories.includes(subCategory ?? "");
+    }
+    return item.path === window.location.pathname;
+  });
+
+  const renderCategoryComponent = () => {
+    if (selectedNavItem) {
+      switch (selectedNavItem.name) {
+        case "World":
+          return <WorldNews />;
+        case "US News":
+          return <USNews />;
+        case "Sports":
+          return <SportsNews />;
+        case "Health":
+          return <HealthNews />;
+        // Add other category components here
+        default:
+          return null;
+      }
+    }
+    return null;
   };
 
   return (
@@ -57,18 +85,17 @@ export default function Navbar() {
       </div>
 
       {/* Dropdown menu for smaller screens */}
-      {showMenu && (
+      {showMenu && window.innerWidth < 750 && (
         <ul className="navbar-elements-dropdown">
           {navItems.map((item) => (
             <li key={item.name}>
               {/* Construct the URL with the category parameter */}
-             
-                <Link to={item.path}>{item.name}</Link>
-             
+              <Link to={item.path}>{item.name}</Link>
             </li>
           ))}
         </ul>
       )}
+      {renderCategoryComponent()}
     </div>
   );
 }

@@ -9,7 +9,8 @@ interface NewsItem {
 }
 
 export default function NewsCard({ newsItem }: { newsItem: NewsItem }) {
-
+  
+  
     if (!newsItem.urlToImage) {
         return null; // Return null to skip rendering the card
       }
