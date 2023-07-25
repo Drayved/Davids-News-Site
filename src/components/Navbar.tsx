@@ -13,6 +13,8 @@ const navItems = [
   { name: "Climate", path: "/climate" },
 ];
 
+
+
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const { subCategory } = useParams(); // Get the subCategory from URL params
@@ -21,6 +23,8 @@ export default function Navbar() {
     setShowMenu((prevShowMenu) => !prevShowMenu);
     console.log('Toggle Menu clicked');
   };
+
+
   
 
   const selectedNavItem = navItems.find((item) => {
