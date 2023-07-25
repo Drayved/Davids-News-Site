@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import NewsCard from "./NewsCard";
-
+import { MyContext } from "../App"
 interface NewsItem {
   title: string;
   description: string;
@@ -8,14 +8,10 @@ interface NewsItem {
   urlToImage: string;
 }
 
-interface GetNewsProps {
-  category?: string;
-  subCategory?: string;
-}
 
-export default function GetNews({ category = "", subCategory = "" }: GetNewsProps) {
+export default function GetNews() {
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
-
+  const { category, setCategory, subCategory } = useContext(MyContext)
   useEffect(() => {
     console.log("Selected category:", category);
     console.log("Selected subCategory:", subCategory);

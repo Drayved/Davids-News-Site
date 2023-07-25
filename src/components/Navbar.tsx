@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import HealthNews from "./HealthNews";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { MyContext } from "../App";
 
 const navItems = [
   { name: "World", path: "/world" },
@@ -13,44 +13,24 @@ const navItems = [
   { name: "Climate", path: "/climate" },
 ];
 
-
-
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
-  const { subCategory } = useParams(); // Get the subCategory from URL params
+  const { setCategory, setSubCategory } = useContext(MyContext);
 
   const toggleMenu = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
     console.log('Toggle Menu clicked');
   };
 
+  const handleCategoryClick = (category: string) => {
+    setCategory(category);
+    setSubCategory(""); // Reset subCategory when a category button is clicked
+    setShowMenu(false); // Close the menu after selecting a category
+  };
 
-  
-
-  const selectedNavItem = navItems.find((item) => {
-    if (item.subCategories) {
-      return item.subCategories.includes(subCategory ?? "");
-    }
-    return item.path === window.location.pathname;
-  });
-
-  const renderCategoryComponent = () => {
-    if (selectedNavItem) {
-      switch (selectedNavItem.name) {
-        case "World":
-          return <WorldNews />;
-        case "US News":
-          return <USNews />;
-        case "Sports":
-          return <SportsNews />;
-        case "Health":
-          return <HealthNews />;
-        // Add other category components here
-        default:
-          return null;
-      }
-    }
-    return null;
+  const handleSubCategoryClick = (subCategory: string) => {
+    setSubCategory(subCategory);
+    setShowMenu(false); // Close the menu after selecting a sub-category
   };
 
   return (
@@ -66,7 +46,7 @@ export default function Navbar() {
                   <ul className={`navbar-elements-dropdown `}>
                     {item.subCategories.map((subCategoryItem) => (
                       <li className="sub-list" key={subCategoryItem}>
-                        <Link to={`${item.path}/${subCategoryItem}`}>
+                        <Link to={`${item.path}/${subCategoryItem}`} onClick={() => handleSubCategoryClick(subCategoryItem)}>
                           {subCategoryItem}
                         </Link>
                       </li>
@@ -75,7 +55,9 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <Link to={item.path}>{item.name}</Link>
+              <Link to={item.path} onClick={() => handleCategoryClick(item.name)}>
+                {item.name}
+              </Link>
             )}
           </li>
         ))}
@@ -94,12 +76,13 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li key={item.name}>
               {/* Construct the URL with the category parameter */}
-              <Link to={item.path}>{item.name}</Link>
+              <Link to={item.path} onClick={() => handleCategoryClick(item.name)}>
+                {item.name}
+              </Link>
             </li>
           ))}
         </ul>
       )}
-      {renderCategoryComponent()}
     </div>
   );
 }

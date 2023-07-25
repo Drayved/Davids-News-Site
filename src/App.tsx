@@ -1,10 +1,20 @@
 import Layout from "./components/Layout";
-
+import { createContext, useState } from "react"
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromChildren, Outlet } from "react-router-dom";
 import GetNews from "./components/GetNews";
-import HealthNews from "./components/HealthNews";
+
+
+export const MyContext = createContext({
+  category: "", 
+  setCategory: (category: string) => {},
+  subCategory: "", 
+  setSubCategory: (subCategory: string) => {}
+});
 
 export default function App() {
+  const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
+
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path={"/"} element={<Layout />}>
@@ -22,10 +32,11 @@ export default function App() {
   );
 
   return (
-    <div>
-      <RouterProvider router={router} />
+    <MyContext.Provider value={{ category, setCategory, subCategory, setSubCategory }}>
+      <div>
+        <RouterProvider router={router} />
         <Outlet />
-      
-    </div>
+      </div>
+    </MyContext.Provider>
   );
 }
