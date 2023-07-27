@@ -10,10 +10,15 @@ export default function Layout() {
   console.log("Category from URL:", category);
   console.log("Subcategory from URL:", subCategory);
   return (
-    <div>
+    <div className="layout">
       <Navbar />
       <Header />
-      <GetNews />
+      <div className="content">
+        <GetNews />
+      </div>
+      <footer className="footer">
+        <p>&copy; 2023 Your News Site. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

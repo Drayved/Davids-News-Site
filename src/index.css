@@ -5,7 +5,7 @@
 /* NavBar */
 
 .navbar-container{
-  @apply bg-[#000] h-[30px]
+  @apply bg-[#333] py-1.5 w-screen fixed top-0
 }
 .navbar-elements{
   @apply flex justify-around text-white items-center cursor-pointer
@@ -16,7 +16,7 @@
 }
 
 .sub-categories {
-  @apply relative bg-black 
+  @apply relative bg-[#333]
 }
 
 .sub-list{
@@ -24,62 +24,22 @@
 }
 
 .navbar-elements-dropdown {
-  @apply bg-black absolute
+  @apply bg-[#333] absolute
 }
 
 /* Header */
 
 .header-container{
-  @apply py-5 text-center
+  @apply py-5 text-center mt-12
 }
 
 .header-text{
   @apply text-4xl font-bold
 }
 
-/* News Cards */
 
-.news-details{
-  @apply mb-10 ml-5 
-}
 
-.news-image{
-  @apply mt-2 
-}
 
-.news-title{
-  @apply font-bold my-1
-}
-
-.news-description{
-  @apply my-2
-}
-
-.read-more{
-  @apply font-semibold italic
-}
-
-.news-cards{
-  @apply mb-2 
-}
-
-@media(min-width:1010px){
-  .news-image{
-    @apply max-w-[400px] min-w-[400px] ml-20
-  }
-
-  .news-cards{
-    @apply flex justify-start mr-2
-  }
-
-  .news-description{
-    @apply max-w-[1000px] 
-  }
-
-  .news-title{
-    @apply max-w-[500px] mt-1
-  }
-}
 
 @media (max-width: 1010px) {
 
@@ -115,24 +75,57 @@
   .line {
     @apply  w-6 h-0.5 bg-white pt-0.5 mb-1.5 relative ml-2
   }
-  
-  .line:nth-child(1) {
-    top: 6px;
-  }
-  
-  .line:nth-child(2) {
-    top: 6px; 
-  }
-  
-  .line:nth-child(3) {
-    top: 6px; 
-  }
-  
-  /* news card */
-  
-  .news-description{
-    @apply mr-5 
-  }
+ 
+}
 
+
+body {
+  @apply m-0;
+  font-family: Arial, sans-serif;
+}
+
+.layout {
+  @apply flex flex-col min-h-[100vh] bg-[#f2f2f2];
+}
+
+.content {
+  @apply flex-1 p-5
+}
+
+.news-cards-container {
+  @apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6;
+
+}
+
+.news-cards {
+  @apply bg-[#fff] rounded-sm overflow-hidden shadow-md;
+}
+
+.news-image img {
+  @apply w-[100%] h-[200px] object-cover rounded-tl-lg rounded-tr-lg
+}
+
+.news-details {
+  @apply p-4
+}
+
+.news-title {
+  @apply text-lg font-bold mb-2 text-[#333];
+}
+
+.news-description {
+  @apply text-sm leading-6 mb-2.5 text-[#555];
+}
+
+.read-more {
+  @apply inline-block bg-[#007bff] text-[#fff] py-2 px-4 rounded-md;
+}
+
+.read-more:hover {
+  @apply bg-[#0056b3]
+}
+
+.footer {
+  @apply text-center p-2.5 bg-[#333] text-[#fff]
 }
 
