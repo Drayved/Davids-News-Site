@@ -75,7 +75,7 @@ export default function Navbar() {
       {showMenu && window.innerWidth < 750 && (
         <ul className="navbar-elements-dropdown">
           {navItems.map((item) => (
-            <li key={item.name}>
+            <li className="li-elements" key={item.name}>
               {/* Construct the URL with the category parameter */}
               <Link to={item.path} onClick={() => handleCategoryClick(item.name)}>
                 {item.name}

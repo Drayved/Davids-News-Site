@@ -57,7 +57,11 @@
   }
 
   .navbar-elements-dropdown {
-    @apply flex flex-col  absolute left-0 right-0  bg-[#000] text-white h-[50%] w-[50%] justify-around items-center
+    @apply flex flex-col  bg-[#333] text-white w-[20%] items-center 
+  }
+
+  .li-elements{
+    @apply py-2
   }
 
   .navbar-elements{
