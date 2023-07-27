@@ -11,10 +11,6 @@
   @apply flex justify-around text-white items-center cursor-pointer
 }
 
-.header-container{
-  @apply bg-blue-500
-}
-
 .hide-on-big-screen{
   @apply hidden
 }
@@ -31,16 +27,24 @@
   @apply bg-black absolute
 }
 
+/* Header */
 
+.header-container{
+  @apply py-5 text-center
+}
+
+.header-text{
+  @apply text-4xl font-bold
+}
 
 /* News Cards */
 
 .news-details{
-  @apply mb-10
+  @apply mb-10 ml-5 
 }
 
 .news-image{
-  @apply mt-2
+  @apply mt-2 
 }
 
 .news-title{
@@ -55,7 +59,31 @@
   @apply font-semibold italic
 }
 
-@media (max-width: 750px) {
+.news-cards{
+  @apply mb-2 
+}
+
+@media(min-width:1010px){
+  .news-image{
+    @apply max-w-[400px] min-w-[400px] ml-20
+  }
+
+  .news-cards{
+    @apply flex justify-start mr-2
+  }
+
+  .news-description{
+    @apply max-w-[1000px] 
+  }
+
+  .news-title{
+    @apply max-w-[500px] mt-1
+  }
+}
+
+@media (max-width: 1010px) {
+
+  /* Navbar */
   .hide-on-mobile {
     @apply hidden
   }
@@ -88,23 +116,23 @@
     @apply  w-6 h-0.5 bg-white pt-0.5 mb-1.5 relative ml-2
   }
   
-  /* Style for the individual lines to create the hamburger icon */
   .line:nth-child(1) {
     top: 6px;
   }
   
   .line:nth-child(2) {
-    top: 6px; /* Adjust this value to control the spacing between the lines */
+    top: 6px; 
   }
   
   .line:nth-child(3) {
-    top: 6px; /* Adjust this value to control the spacing between the lines */
+    top: 6px; 
   }
   
-  /* Style for the menu button when it's active (menu is shown) */
-
+  /* news card */
   
-
-  
+  .news-description{
+    @apply mr-5 
+  }
 
 }
+

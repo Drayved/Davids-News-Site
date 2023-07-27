@@ -24,13 +24,14 @@ export default function Navbar() {
 
   const handleCategoryClick = (category: string) => {
     setCategory(category);
-    setSubCategory(""); // Reset subCategory when a category button is clicked
-    setShowMenu(false); // Close the menu after selecting a category
+    setSubCategory(""); 
+    setShowMenu(false); 
   };
 
   const handleSubCategoryClick = (subCategory: string) => {
-    setSubCategory(subCategory);
-    setShowMenu(false); // Close the menu after selecting a sub-category
+    setCategory(subCategory)
+    
+    setShowMenu(false); 
   };
 
   return (

@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-
+import Header from "./Header";
 import GetNews from "./GetNews"
 
 import { useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ export default function Layout() {
   return (
     <div>
       <Navbar />
+      <Header />
       <GetNews />
     </div>
   );
