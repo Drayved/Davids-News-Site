@@ -11,10 +11,8 @@ interface NewsItem {
 
 export default function GetNews() {
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const { category, setCategory, subCategory } = useContext(MyContext)
+  const { category, subCategory } = useContext(MyContext)
   useEffect(() => {
-    console.log("Selected category:", category);
-    console.log("Selected subCategory:", subCategory);
 
     const fetchNewsData = async () => {
       try {

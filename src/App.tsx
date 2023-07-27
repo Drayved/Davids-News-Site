@@ -6,9 +6,9 @@ import GetNews from "./components/GetNews";
 
 export const MyContext = createContext({
   category: "", 
-  setCategory: (category: string) => {},
+  setCategory: (_: string) => {},
   subCategory: "", 
-  setSubCategory: (subCategory: string) => {}
+  setSubCategory: (_: string) => {}
 });
 
 export default function App() {
