@@ -72,17 +72,34 @@ export default function Navbar() {
       </div>
 
       {/* Dropdown menu for smaller screens */}
-      {showMenu && window.innerWidth < 750 && (
+      {showMenu && window.innerWidth < 1000 && (
         <ul className="navbar-elements-dropdown">
           {navItems.map((item) => (
             <li className="li-elements" key={item.name}>
-              {/* Construct the URL with the category parameter */}
+             {item.subCategories ? (
+              <div className="sub-categories">
+                {/* Show the Politics button with the onClick to toggle subcategories */}
+                <span onClick={toggleMenu}>{item.name}</span>
+                {showMenu && (
+                  <ul className={`navbar-elements-dropdown `}>
+                    {item.subCategories.map((subCategoryItem) => (
+                      <li className="sub-list" key={subCategoryItem}>
+                        <Link to={`${item.path}/${subCategoryItem}`} onClick={() => handleSubCategoryClick(subCategoryItem)}>
+                          {subCategoryItem}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
               <Link to={item.path} onClick={() => handleCategoryClick(item.name)}>
                 {item.name}
               </Link>
-            </li>
-          ))}
-        </ul>
+            )}
+          </li>
+        ))}
+      </ul>
       )}
     </div>
   );

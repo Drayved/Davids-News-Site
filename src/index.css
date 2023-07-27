@@ -8,7 +8,11 @@
   @apply bg-[#333] py-1.5 w-screen fixed top-0
 }
 .navbar-elements{
-  @apply flex justify-around text-white items-center cursor-pointer
+  @apply flex justify-around text-white items-center 
+}
+
+.li-elements{
+  @apply cursor-pointer
 }
 
 .hide-on-big-screen{
@@ -78,6 +82,10 @@
   
   .line {
     @apply  w-6 h-0.5 bg-white pt-0.5 mb-1.5 relative ml-2
+  }
+
+  .sub-list{
+    @apply hidden 
   }
  
 }
