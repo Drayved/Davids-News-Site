@@ -11,10 +11,6 @@
   @apply flex justify-around text-white items-center 
 }
 
-.li-elements{
-  @apply cursor-pointer
-}
-
 .hide-on-big-screen{
   @apply hidden
 }
@@ -25,6 +21,10 @@
 
 .sub-list{
   @apply my-2 h-8 mx-2 
+}
+
+.sub-cat{
+  @apply cursor-pointer
 }
 
 .navbar-elements-dropdown {
@@ -41,11 +41,27 @@
   @apply text-4xl font-bold
 }
 
+.search-bar{
+  @apply mt-6 py-1 rounded-md
+}
 
+.search-btn{
+  @apply bg-[#007bff] rounded-md text-white px-5 ml-2 py-1
+}
 
+.search-btn:hover{
+  @apply bg-[#0056b3]
+}
 
+.li-elements:hover,
+.navbar-li:hover,
+.sub-list:hover,
+.category-item:hover,
+.sub-cat:hover{
+  @apply text-gray-400
+}
 
-@media (max-width: 1010px) {
+@media (max-width: 700px) {
 
   /* Navbar */
   .hide-on-mobile {
@@ -61,11 +77,11 @@
   }
 
   .navbar-elements-dropdown {
-    @apply flex flex-col  bg-[#333] text-white w-[20%] items-center 
+    @apply flex flex-col  bg-[#333] text-white w-[120px] items-center 
   }
 
   .li-elements{
-    @apply py-2
+    @apply my-2 cursor-pointer
   }
 
   .navbar-elements{
@@ -85,9 +101,12 @@
   }
 
   .sub-list{
-    @apply hidden 
+    
   }
  
+  .sub-list-container{
+    @apply bg-[#333] ml-20 mt-[-40px] px-16 rounded-sm py-3
+  }
 }
 
 
