@@ -1,17 +1,25 @@
 import { useState, useEffect, useContext } from "react";
 import NewsCard from "./NewsCard";
 import { MyContext } from "../App"
-interface NewsItem {
+
+export interface NewsItem {
   title: string;
   description: string;
   url: string;
   urlToImage: string;
+  publishedAt: string;
+  source: {
+    id: string,
+    name: string
+  }
+  // Add more properties as needed
 }
 
 
 export default function GetNews() {
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
   const { category, subCategory } = useContext(MyContext)
+  
   useEffect(() => {
 
     const fetchNewsData = async () => {

@@ -1,17 +1,6 @@
+import { NewsItem } from "./GetNews";
 
 
-interface NewsItem {
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  source: {
-    id: string,
-    name: string
-  }
-  // Add more properties as needed
-}
 
 export default function NewsCard({ newsItem }: { newsItem: NewsItem}) {
   const formatPublishedAt = (publishedAt: string) => {
