@@ -95,7 +95,7 @@ body {
 }
 
 .article-info-container{
-  @apply flex justify-between mt-[-10px] italic text-gray-500
+  @apply flex justify-between mt-[-10px] italic text-gray-500 text-sm
 }
 
 .news-title {
