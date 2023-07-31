@@ -3,11 +3,22 @@ import fetch from 'node-fetch';
 export const handler = async (event) => {
   try {
     const apiKey = process.env.VITE_NEWS_KEY;
-    const { category } = event.queryStringParameters;
+    const { category, subCategory } = event.queryStringParameters;
     console.log("Serverless Function - Received category:", category); // Add this line to log the received category
-    // Define the base URL for the News API
-    const apiUrl = `https://newsapi.org/v2/everything?q=${category ? category : "tech"}&apiKey=${apiKey}`;
+    
+    let source = "";
+    if (category === 'politics' && subCategory) {
+      const sourceMap = {
+        "conservative": "foxnews.com, newsmax.com, dailycaller.com, theamericanconservative.com, nationalreview.com",
+        "liberal": "cnn.com, msnbc.com,  nytimes.com,  washingtonpost.com, theguardian.com",
+        "independent": "reuters.com, aljazeera.com, bbc.com, politico.com, huffpost.com"
+      };
+      source = sourceMap[subCategory] || "bbc.com"; // Fallback to "bbc" if the subCategory is not valid
+    }
+    
 
+    const apiUrl = `https://newsapi.org/v2/everything?q=${category ? category : "tech"}${source ? `&domains=${source}` : ""}&apiKey=${apiKey}&sortBy=publishedAt&language=en`;
+    
     // Make the API call to the News API
     const response = await fetch(apiUrl);
     const data = await response.json();

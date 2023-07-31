@@ -27,6 +27,7 @@ export default function App() {
         <Route path="/entertainment" element={<GetNews  />} />
         <Route path="/science" element={<GetNews />} />
         <Route path="/climate" element={<GetNews />} />
+        <Route path="/tech" element={<GetNews />} />
       </Route>
     )
   );

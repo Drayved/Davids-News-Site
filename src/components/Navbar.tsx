@@ -7,10 +7,12 @@ const navItems = [
   { name: "US News", path: "/us-news" },
   { name: "Sports", path: "/sports" },
   { name: "Health", path: "/health" },
+  { name: "Tech", path: "/tech" },
   { name: "Politics", path: "/politics", subCategories: ["conservative", "liberal", "independent"] },
   { name: "Entertainment", path: "/entertainment" },
   { name: "Science", path: "/science" },
   { name: "Climate", path: "/climate" },
+  
 ];
 
 export default function Navbar() {
@@ -35,8 +37,8 @@ export default function Navbar() {
   };
 
   const handleSubCategoryClick = (subCategory: string) => {
-    setCategory(subCategory)
-    
+    setCategory(`politics`)
+    setSubCategory(subCategory)
     setShowMenu(false); 
   };
 

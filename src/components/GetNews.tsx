@@ -21,7 +21,8 @@ export default function GetNews() {
   const { category, subCategory } = useContext(MyContext)
   
   useEffect(() => {
-
+    console.log("cate" + category)
+    console.log("sub" + subCategory)
     const fetchNewsData = async () => {
       try {
         // Prepare the base API URL

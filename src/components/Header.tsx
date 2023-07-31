@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { useState } from 'react'
 
 export default function Header(){
-    const {category, setCategory} = useContext(MyContext)
+    const {category, setCategory, subCategory} = useContext(MyContext)
     const [searchInput, setSearchInput] = useState('');
 
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>){
@@ -20,7 +20,7 @@ export default function Header(){
     return(
         <div className="header-container">
             <h1 className="header-text">Keep Up To Date With The Latest News.</h1>
-            <h1 className="text-xl font-semibold italic mt-3">{category.toUpperCase()} NEWS </h1>
+            <h1 className="text-xl font-semibold italic mt-3">{subCategory ? subCategory.toUpperCase() : category.toUpperCase()} NEWS </h1>
             <form onSubmit={handleSubmit}>
                 <input className="search-bar" type="text" value={searchInput} onChange={handleInput} />
                 <button className="search-btn" type="submit">Search</button>
