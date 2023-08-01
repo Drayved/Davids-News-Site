@@ -19,7 +19,7 @@ body {
 /* NavBar */
 
 .navbar-container{
-  @apply bg-[#333] py-1.5 w-screen fixed top-0
+  @apply bg-[#333] py-1.5 w-screen fixed top-0 pr-5
 }
 .navbar-elements{
   @apply flex justify-around text-white items-center 
@@ -54,9 +54,11 @@ body {
 .header-text{
   @apply text-4xl font-bold
 }
-
+.search-container{
+  @apply ml-24 mx-auto
+}
 .search-bar{
-  @apply mt-6 py-1 rounded-md
+  @apply mt-6 py-1 rounded-md px-4
 }
 
 .search-btn{
@@ -75,6 +77,10 @@ body {
   @apply text-gray-400
 }
 
+.sort-options{
+  @apply mt-2 px-3 py-0.5
+}
+
 /* News Cards */
 
 .news-cards-container {
@@ -87,7 +93,7 @@ body {
 }
 
 .news-image img {
-  @apply w-[100%] h-[200px] object-cover rounded-tl-lg rounded-tr-lg
+  @apply w-[100%] h-[250px] object-cover rounded-tl-lg rounded-tr-lg
 }
 
 .news-details {
@@ -95,7 +101,11 @@ body {
 }
 
 .article-info-container{
-  @apply flex justify-between mt-[-10px] italic text-gray-500 text-sm
+  @apply flex justify-between mt-[-10px] italic text-gray-500 text-xs my-1 mt-0.5
+}
+
+.source{
+  @apply flex justify-end
 }
 
 .news-title {
@@ -112,6 +122,10 @@ body {
 
 .read-more:hover {
   @apply bg-[#0056b3]
+}
+
+.pagination{
+  @apply text-center text-sm
 }
 
 /* footer */

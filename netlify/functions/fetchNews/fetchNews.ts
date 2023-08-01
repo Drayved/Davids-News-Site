@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 export const handler = async (event) => {
   try {
     const apiKey = process.env.VITE_NEWS_KEY;
-    const { category, subCategory } = event.queryStringParameters;
+    const { category, subCategory, sortBy } = event.queryStringParameters;
     console.log("Serverless Function - Received category:", category); // Add this line to log the received category
     
     let source = "";
@@ -16,8 +16,10 @@ export const handler = async (event) => {
       source = sourceMap[subCategory] || "bbc.com"; // Fallback to "bbc" if the subCategory is not valid
     }
     
+    const validSortByOptions = ["relevancy", "popularity", "publishedAt"];
+    const sortByOption = validSortByOptions.includes(sortBy) ? sortBy : "publishedAt";
 
-    const apiUrl = `https://newsapi.org/v2/everything?q=${category ? category : "tech"}${source ? `&domains=${source}` : ""}&apiKey=${apiKey}&sortBy=publishedAt&language=en`;
+    const apiUrl = `https://newsapi.org/v2/everything?q=${category ? category : "tech"}${source ? `&domains=${source}` : ""}&apiKey=${apiKey}&sortBy=${sortByOption}&language=en`;
     
     // Make the API call to the News API
     const response = await fetch(apiUrl);

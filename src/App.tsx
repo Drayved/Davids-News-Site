@@ -8,17 +8,20 @@ export const MyContext = createContext({
   category: "", 
   setCategory: (_: string) => {},
   subCategory: "", 
-  setSubCategory: (_: string) => {}
+  setSubCategory: (_: string) => {},
+  sortBy: "publishedAt",
+  setSortBy: (_: string) => {}
 });
 
 export default function App() {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
+  const [sortBy, setSortBy] = useState("publishedAt")
 
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path={"/"} element={<Layout />}>
-       <Route path="/world" element={<GetNews  />} /> {/* Render GetNews for each category */}
+       <Route path="/world${sortBy ? /sortBy :}" element={<GetNews  />} /> {/* Render GetNews for each category */}
         <Route path="/us-news" element={<GetNews />} />
         <Route path="/sports" element={<GetNews />} />
         {/* Add more routes for each category and sub-category */}
@@ -33,7 +36,7 @@ export default function App() {
   );
 
   return (
-    <MyContext.Provider value={{ category, setCategory, subCategory, setSubCategory }}>
+    <MyContext.Provider value={{ category, setCategory, subCategory, setSubCategory, sortBy, setSortBy }}>
       <div>
         <RouterProvider router={router} />
         <Outlet />

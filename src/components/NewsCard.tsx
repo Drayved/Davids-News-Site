@@ -23,7 +23,7 @@ export default function NewsCard({ newsItem }: { newsItem: NewsItem}) {
   return (
     <div className="news-cards">
       <div className="news-image">
-        <img src={newsItem.urlToImage} alt={newsItem.title} />
+        <img className="news-img" src={newsItem.urlToImage} alt={newsItem.title} />
       </div>
       <div className="news-details">
         <div className="article-info-container">

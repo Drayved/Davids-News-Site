@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import NewsCard from "./NewsCard";
-import { MyContext } from "../App"
+import { MyContext } from "../App";
+import { useSearchParams } from "react-router-dom";
 
 export interface NewsItem {
   title: string;
@@ -12,17 +13,32 @@ export interface NewsItem {
     id: string,
     name: string
   }
-  // Add more properties as needed
 }
-
 
 export default function GetNews() {
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const { category, subCategory } = useContext(MyContext)
-  
+  const { category, subCategory } = useContext(MyContext);
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get("sortBy") || "publishedAt";
+  const [currentPage, setCurrentPage] = useState(1);
+  const newsPerPage = 20;
+  const [articles, setArticles] = useState<NewsItem[]>([]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => {
+      const nextPage = prevPage + 1;
+      return nextPage <= totalPages ? nextPage : prevPage;
+    });
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => {
+      const prevPageNumber = prevPage - 1;
+      return prevPageNumber >= 1 ? prevPageNumber : prevPage;
+    });
+  };
+
   useEffect(() => {
-    console.log("cate" + category)
-    console.log("sub" + subCategory)
     const fetchNewsData = async () => {
       try {
         // Prepare the base API URL
@@ -38,7 +54,7 @@ export default function GetNews() {
           }
         }
 
-        console.log("API URL:", apiUrl);
+        apiUrl += `&sortBy=${sortBy}`;
 
         // Make the API call to your serverless function endpoint
         const response = await fetch(apiUrl, {
@@ -53,19 +69,30 @@ export default function GetNews() {
         }
 
         const responseData = await response.json();
-        const articles = responseData.articles; // Use 'articles' instead of 'sources'
+        const fetchedArticles = responseData.articles;
+        setArticles(fetchedArticles);
+        // Calculate the start and end index of news cards to be displayed on the current page
+        const startIndex = (currentPage - 1) * newsPerPage;
+        const endIndex = startIndex + newsPerPage;
 
-        setNewsData(articles);
+        // Slice the newsData array to get the subset for the current page
+        const newsSubset = articles.slice(startIndex, endIndex);
+        setNewsData(newsSubset);
       } catch (error) {
         console.error("Error fetching news data:", error);
       }
     };
-
-    // Call the fetchNewsData function whenever category or subCategory changes
+    
+    // Call the fetchNewsData function whenever category, subCategory, sortBy, or currentPage changes
     fetchNewsData();
-  }, [category, subCategory]);
+  }, [category, subCategory, sortBy, currentPage]);
 
-  // Render the news data
+  const totalPages = Math.ceil(articles.length / newsPerPage);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [category]);
+
   return (
     <div>
       <div className="news-cards-container">
@@ -74,6 +101,15 @@ export default function GetNews() {
         ) : (
           newsData?.map((newsItem, index) => <NewsCard key={index} newsItem={newsItem} />)
         )}
+      </div>
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={handlePrevPage}>
+          Previous Page 
+        </button>
+        <span>{ currentPage } of { totalPages }</span>
+        <button disabled={newsData.length < newsPerPage} onClick={handleNextPage}>
+          Next Page 
+        </button>
       </div>
     </div>
   );
