@@ -1,12 +1,12 @@
 import { MyContext } from "../App";
 import { useContext, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+
 
 
 export default function Header() {
   const { category, setCategory, subCategory, setSortBy, sortBy } = useContext(MyContext);
   const [searchInput, setSearchInput] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  
 
   function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function Header() {
     setSortBy(sortByValue);
 
     // Update the URL query parameter for 'sortBy'
-    setSearchParams({ sortBy: sortByValue });
+    
   }
 
   const headerTitle = subCategory

@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import NewsCard from "./NewsCard";
 import { MyContext } from "../App";
-import { useSearchParams } from "react-router-dom";
 
 export interface NewsItem {
   title: string;
@@ -17,7 +16,7 @@ export interface NewsItem {
 
 export default function GetNews() {
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const { category, subCategory, setSortBy, sortBy } = useContext(MyContext);
+  const { category, subCategory, sortBy } = useContext(MyContext);
   
   
   const [currentPage, setCurrentPage] = useState(1);
