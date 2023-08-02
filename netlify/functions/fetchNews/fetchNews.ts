@@ -5,7 +5,7 @@ export const handler = async (event) => {
   try {
     const apiKey = process.env.VITE_NEWS_KEY;
     const { category, subCategory, sortBy } = event.queryStringParameters;
-    console.log("Serverless Function - Received category:", category); // Add this line to log the received category
+    console.log("Serverless Function - Received category:", category); 
     
     let source = "";
     if (category === 'politics' && subCategory) {
@@ -14,19 +14,19 @@ export const handler = async (event) => {
         "liberal": "cnn.com, msnbc.com,  nytimes.com,  washingtonpost.com, theguardian.com",
         "independent": "reuters.com, aljazeera.com, bbc.com, politico.com, huffpost.com"
       } 
-      source = sourceMap[subCategory] || "bbc.com"; // Fallback to "bbc" if the subCategory is not valid
+      source = sourceMap[subCategory] || "bbc.com"; 
     }else {
-      // For other categories, use default sources.
+      
       const defaultSourceMap = {
-        "world": "bbc.com",
-        "US News": "usatoday.com",
-        "Sports": "espn.com",
-        "Health": "medicalnewstoday.com",
-        "Tech": "theverge.com",
-        "Entertainment": "variety.com",
+        "General": "bbc.com, reuters.com, aljazeera.com, foxnews.com, cnn.com, msnbc.com",
+        "US News": "usatoday.com, cnn.com, npr.org",
+        "Sports": "espn.com, bleacherreport.com, sportingnews.com",
+        "Health": "medicalnewstoday.com, webmd.com, healthline.com",
+        "Tech": "variety.com, hollywoodreporter.com, entertainmentweekly.com",
+        "Entertainment": "space.com, scientificamerican.com, livescience.com",
         "Science": "space.com",
-        "Climate": "nrdc.org"
-        // Add default sources for other categories as needed
+        "climate": "nrdc.org, climate.gov, carbonbrief.org, bbc.com"
+        
       };
       source = defaultSourceMap[category] || "bbc.com"
     }

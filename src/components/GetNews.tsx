@@ -109,12 +109,12 @@ export default function GetNews() {
           newsData?.map((newsItem, index) => <NewsCard key={index} newsItem={newsItem} />)
         )}
       </div>
-      <div className="pagination mt-4">
-        <button disabled={currentPage === 1} onClick={handlePrevPage}>
+      <div className="pagination">
+        <button className="page-btns" disabled={currentPage === 1} onClick={handlePrevPage}>
           Previous Page 
         </button>
         <span className="text-xs"> { currentPage } - { totalPages } </span>
-        <button disabled={newsData.length < newsPerPage} onClick={handleNextPage}>
+        <button className="page-btns" disabled={newsData.length < newsPerPage} onClick={handleNextPage}>
           Next Page 
         </button>
       </div>

@@ -11,7 +11,7 @@ const navItems = [
   { name: "Politics", path: "/politics", subCategories: ["Conservative", "Liberal", "Independent"] },
   { name: "Entertainment", path: "/entertainment" },
   { name: "Science", path: "/science" },
-  
+  { name: "Climate", path: "/climate" },
   
 ];
 

@@ -5,7 +5,7 @@
 /* Page */
 body {
   @apply m-0;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .layout {
@@ -58,7 +58,7 @@ body {
   @apply ml-24 mx-auto
 }
 .search-bar{
-  @apply mt-6 py-1 rounded-md px-4
+  @apply py-1 rounded-md px-4
 }
 
 .search-btn{
@@ -78,18 +78,22 @@ body {
 }
 
 .sort-options{
-  @apply mt-2 px-3 py-0.5
+  @apply mt-3 px-3 py-0.5
 }
 
 /* News Cards */
 
 .news-cards-container {
-  @apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6;
+  @apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 mt-[-24px]
 
 }
 
 .news-cards {
   @apply bg-[#fff] rounded-sm overflow-hidden shadow-md;
+}
+
+.news-cards{
+  transition: transform 0.8s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .news-image img {
@@ -125,13 +129,17 @@ body {
 }
 
 .pagination{
-  @apply text-center text-sm
+  @apply text-center text-sm mt-4
+}
+
+.page-btns{
+  @apply italic text-sm
 }
 
 /* footer */
 
 .footer {
-  @apply text-center p-2.5 bg-[#333] text-[#fff]
+  @apply text-center p-2.5 bg-[#333] text-[#fff] text-sm
 }
 
 /* Media */
