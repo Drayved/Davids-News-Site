@@ -100,6 +100,24 @@ export default function GetNews() {
     setNewsData(newsSubset);
   }, [articles, currentPage]);
 
+  const getPagesToShow = () => {
+    const pagesToShow = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) {
+        pagesToShow.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        pagesToShow.push(1, 2, 3, "...", totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pagesToShow.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pagesToShow.push(1, "...", currentPage, "...", totalPages);
+      }
+    }
+    return pagesToShow;
+  };
+
   return (
     <div>
       <div className="news-cards-container">
@@ -110,12 +128,22 @@ export default function GetNews() {
         )}
       </div>
       <div className="pagination">
-        <button className="page-btns" disabled={currentPage === 1} onClick={handlePrevPage}>
-          Previous Page 
+        <button className={`page-btns ${currentPage === 1 ? 'btn-disabled' : ''}`}  onClick={handlePrevPage}>
+        <img className="arrows prev-arrow" src="images/left.png" alt="" /> Previous 
         </button>
-        <span className="text-xs"> { currentPage } - { totalPages } </span>
-        <button className="page-btns" disabled={newsData.length < newsPerPage} onClick={handleNextPage}>
-          Next Page 
+        <div className="page-number-container">
+          {getPagesToShow().map((page, index) => (
+            <button
+              key={index}
+              className={`page-btns page-number-box ${page === currentPage ? 'current-page' : ''}`}
+              onClick={() => setCurrentPage(page as number)}
+            >
+              {page.toString()}
+            </button>
+          ))}
+        </div>
+        <button className={`page-btns ${currentPage === totalPages ? 'btn-disabled' : ''}`} onClick={handleNextPage}>
+          Next <img className="arrows next-arrow" src="images/next.png" alt="" />
         </button>
       </div>
     </div>

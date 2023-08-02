@@ -58,7 +58,7 @@ body {
   @apply ml-24 mx-auto
 }
 .search-bar{
-  @apply py-1 rounded-md px-4
+  @apply py-1 rounded-md px-5 
 }
 
 .search-btn{
@@ -129,11 +129,36 @@ body {
 }
 
 .pagination{
-  @apply text-center text-sm mt-4
+  @apply text-sm w-[23rem] mt-4 border bg-[#fff] rounded-md flex justify-center mx-10 shadow-sm mx-auto
 }
 
 .page-btns{
-  @apply italic text-sm
+  @apply italic text-sm px-2 flex items-center
+}
+
+.page-number-box {
+  @apply inline-block px-4 py-2 border border-gray-300 rounded-sm;
+  
+}
+
+.page-number-box.current-page{
+  @apply border-gray-950
+}
+
+.btn-disabled{
+  @apply opacity-50 cursor-auto
+}
+
+.arrows{
+  @apply h-5 font-semibold mt-[-1.5px]
+}
+
+.next-arrow{
+  
+}
+
+.prev-arrow{
+  
 }
 
 /* footer */
@@ -184,5 +209,16 @@ body {
  
   .sub-list-container{
     @apply bg-[#333] ml-20 mt-[-40px] px-16 rounded-sm py-3
+  }
+}
+
+@media(max-width: 400px){
+  .pagination{
+    @apply mx-1 
+  }
+
+  .page-number-box {
+    @apply px-1.5 py-0 max-w-[10rem] ;
+    
   }
 }

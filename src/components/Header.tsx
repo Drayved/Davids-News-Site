@@ -38,7 +38,7 @@ export default function Header() {
         {headerTitle}
       </h1>
       <form onSubmit={handleSubmit} className="search-container">
-        <input className="search-bar" type="text" value={searchInput} onChange={handleInput} />
+        <input placeholder="Search for news articles..." className="search-bar" type="text" value={searchInput} onChange={handleInput} />
         <button className="search-btn" type="submit">
           Search
         </button>
