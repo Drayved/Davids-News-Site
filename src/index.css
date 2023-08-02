@@ -55,7 +55,7 @@ body {
   @apply text-4xl font-bold
 }
 .search-container{
-  @apply mx-auto
+  @apply ml-24 mx-auto
 }
 .search-bar{
   @apply py-1 rounded-md px-5 
@@ -209,6 +209,10 @@ body {
  
   .sub-list-container{
     @apply bg-[#333] ml-20 mt-[-40px] px-16 rounded-sm py-3
+  }
+
+  .search-container{
+    @apply ml-0 
   }
 }
 
