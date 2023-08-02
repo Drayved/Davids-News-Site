@@ -55,7 +55,7 @@ body {
   @apply text-4xl font-bold
 }
 .search-container{
-  @apply ml-24 mx-auto
+  @apply mx-auto
 }
 .search-bar{
   @apply py-1 rounded-md px-5 
