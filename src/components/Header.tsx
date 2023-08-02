@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <div className="header-container">
       <h1 className="header-text">Keep Up To Date With The Latest News.</h1>
-      <h1 className="text-xl font-semibold italic mt-3">
+      <h1 className="header-title">
         {headerTitle}
       </h1>
       <form onSubmit={handleSubmit} className="search-container">
@@ -43,11 +43,13 @@ export default function Header() {
           Search
         </button>
       </form>
-      <select className="sort-options" onChange={handleSortingOption} value={sortBy}>
-        <option value="publishedAt">Newest</option>
-        <option value="relevancy">Relevancy</option>
-        <option value="popularity">Popular</option>
-      </select>
+      <div className="sort-options-container">
+        <select className="sort-options" onChange={handleSortingOption} value={sortBy}>
+          <option value="publishedAt">Newest</option>
+          <option value="relevancy">Relevancy</option>
+          <option value="popularity">Popular</option>
+        </select>
+      </div>
     </div>
   );
 }

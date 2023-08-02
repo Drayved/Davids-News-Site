@@ -22,7 +22,7 @@ body {
   @apply bg-[#333] py-1.5 w-screen fixed top-0 pr-5
 }
 .navbar-elements{
-  @apply flex justify-around text-white items-center 
+  @apply flex justify-around text-[#fff] items-center 
 }
 
 .hide-on-big-screen{
@@ -51,18 +51,24 @@ body {
   @apply py-5 text-center mt-12
 }
 
+.header-title{
+  @apply text-xl font-semibold italic mb-2 mt-1
+}
+
 .header-text{
   @apply text-4xl font-bold
 }
+
 .search-container{
-  @apply ml-24 mx-auto
+  @apply ml-24 mx-auto mt-3 
 }
+
 .search-bar{
   @apply py-1 rounded-md px-5 
 }
 
 .search-btn{
-  @apply bg-[#007bff] rounded-md text-white px-5 ml-2 py-1
+  @apply bg-[#007bff] rounded-md text-[#fff] px-5 ml-2 py-1
 }
 
 .search-btn:hover{
@@ -78,7 +84,11 @@ body {
 }
 
 .sort-options{
-  @apply mt-3 px-3 py-0.5
+  @apply mt-3 p-1
+}
+
+.sort-options-container{
+  @apply w-fit min-w-[140px] mx-auto 
 }
 
 /* News Cards */
@@ -176,7 +186,7 @@ body {
   }
 
   .menu-button {
-    @apply block cursor-pointer w-10 text-white py-0.5 
+    @apply block cursor-pointer w-10 text-[#fff] py-0.5 
   }
 
   .navbar-elements-dropdown {
@@ -184,7 +194,7 @@ body {
   }
 
   .navbar-elements-dropdown {
-    @apply flex flex-col  bg-[#333] text-white w-[120px] items-center 
+    @apply flex flex-col  bg-[#333] text-[#fff] w-[120px] items-center 
   }
 
   .li-elements{
@@ -204,7 +214,7 @@ body {
   }
   
   .line {
-    @apply  w-6 h-0.5 bg-white pt-0.5 mb-1.5 relative ml-2
+    @apply  w-6 h-0.5 bg-[#fff] pt-0.5 mb-1.5 relative ml-2
   }
  
   .sub-list-container{
