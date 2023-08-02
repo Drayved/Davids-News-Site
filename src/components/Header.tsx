@@ -43,13 +43,11 @@ export default function Header() {
           Search
         </button>
       </form>
-      <div className="sort-options-container">
-        <select className="sort-options" onChange={handleSortingOption} value={sortBy}>
-          <option value="publishedAt">Newest</option>
-          <option value="relevancy">Relevancy</option>
-          <option value="popularity">Popular</option>
-        </select>
-      </div>
+      <select className="sort-options" onChange={handleSortingOption} value={sortBy}>
+        <option value="publishedAt">Newest</option>
+        <option value="relevancy">Relevancy</option>
+        <option value="popularity">Popular</option>
+      </select>
     </div>
   );
 }

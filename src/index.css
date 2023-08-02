@@ -84,11 +84,7 @@ body {
 }
 
 .sort-options{
-  @apply mt-3 p-1
-}
-
-.sort-options-container{
-  @apply w-fit min-w-[140px] mx-auto 
+  @apply mt-3 p-1 bg-[#fff]
 }
 
 /* News Cards */
