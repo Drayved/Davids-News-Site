@@ -17,9 +17,9 @@ export interface NewsItem {
 
 export default function GetNews() {
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const { category, subCategory } = useContext(MyContext);
-  const [searchParams] = useSearchParams();
-  const sortBy = searchParams.get("sortBy") || "publishedAt";
+  const { category, subCategory, setSortBy, sortBy } = useContext(MyContext);
+  
+  
   const [currentPage, setCurrentPage] = useState(1);
   const newsPerPage = 20;
   const [articles, setArticles] = useState<NewsItem[]>([]);
@@ -52,9 +52,13 @@ export default function GetNews() {
           if (subCategory) {
             apiUrl += `&subCategory=${subCategory}`;
           }
+        }else {
+          
+          apiUrl += `?category=general`;
         }
-
         apiUrl += `&sortBy=${sortBy}`;
+
+
 
         // Make the API call to your serverless function endpoint
         const response = await fetch(apiUrl, {
@@ -71,13 +75,6 @@ export default function GetNews() {
         const responseData = await response.json();
         const fetchedArticles = responseData.articles;
         setArticles(fetchedArticles);
-        // Calculate the start and end index of news cards to be displayed on the current page
-        const startIndex = (currentPage - 1) * newsPerPage;
-        const endIndex = startIndex + newsPerPage;
-
-        // Slice the newsData array to get the subset for the current page
-        const newsSubset = articles.slice(startIndex, endIndex);
-        setNewsData(newsSubset);
       } catch (error) {
         console.error("Error fetching news data:", error);
       }
@@ -93,6 +90,16 @@ export default function GetNews() {
     setCurrentPage(1);
   }, [category]);
 
+  useEffect(() => {
+    // Calculate the start and end index of news cards to be displayed on the current page
+    const startIndex = (currentPage - 1) * newsPerPage;
+    const endIndex = startIndex + newsPerPage;
+
+    // Slice the articles array to get the subset for the current page
+    const newsSubset = articles.slice(startIndex, endIndex);
+    setNewsData(newsSubset);
+  }, [articles, currentPage]);
+
   return (
     <div>
       <div className="news-cards-container">
@@ -102,11 +109,11 @@ export default function GetNews() {
           newsData?.map((newsItem, index) => <NewsCard key={index} newsItem={newsItem} />)
         )}
       </div>
-      <div className="pagination">
+      <div className="pagination mt-4">
         <button disabled={currentPage === 1} onClick={handlePrevPage}>
           Previous Page 
         </button>
-        <span>{ currentPage } of { totalPages }</span>
+        <span className="text-xs"> { currentPage } - { totalPages } </span>
         <button disabled={newsData.length < newsPerPage} onClick={handleNextPage}>
           Next Page 
         </button>

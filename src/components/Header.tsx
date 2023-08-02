@@ -27,13 +27,15 @@ export default function Header() {
     setSearchParams({ sortBy: sortByValue });
   }
 
- 
+  const headerTitle = subCategory
+  ? subCategory.toUpperCase()
+  : category.toUpperCase();
 
   return (
     <div className="header-container">
       <h1 className="header-text">Keep Up To Date With The Latest News.</h1>
       <h1 className="text-xl font-semibold italic mt-3">
-        {subCategory ? subCategory.toUpperCase() : category.toUpperCase()} NEWS{" "}
+        {headerTitle}
       </h1>
       <form onSubmit={handleSubmit} className="search-container">
         <input className="search-bar" type="text" value={searchInput} onChange={handleInput} />

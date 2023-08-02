@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MyContext } from "../App";
 
 const navItems = [
-  { name: "World", path: "/world" },
+  { name: "General", path: "" },
   { name: "US News", path: "/us-news" },
   { name: "Sports", path: "/sports" },
   { name: "Health", path: "/health" },
@@ -11,7 +11,7 @@ const navItems = [
   { name: "Politics", path: "/politics", subCategories: ["Conservative", "Liberal", "Independent"] },
   { name: "Entertainment", path: "/entertainment" },
   { name: "Science", path: "/science" },
-  { name: "Climate", path: "/climate" },
+  
   
 ];
 

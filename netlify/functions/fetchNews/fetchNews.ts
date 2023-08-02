@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 
+
 export const handler = async (event) => {
   try {
     const apiKey = process.env.VITE_NEWS_KEY;
@@ -12,10 +13,23 @@ export const handler = async (event) => {
         "conservative": "foxnews.com, newsmax.com, dailycaller.com, theamericanconservative.com, nationalreview.com",
         "liberal": "cnn.com, msnbc.com,  nytimes.com,  washingtonpost.com, theguardian.com",
         "independent": "reuters.com, aljazeera.com, bbc.com, politico.com, huffpost.com"
-      };
+      } 
       source = sourceMap[subCategory] || "bbc.com"; // Fallback to "bbc" if the subCategory is not valid
+    }else {
+      // For other categories, use default sources.
+      const defaultSourceMap = {
+        "world": "bbc.com",
+        "US News": "usatoday.com",
+        "Sports": "espn.com",
+        "Health": "medicalnewstoday.com",
+        "Tech": "theverge.com",
+        "Entertainment": "variety.com",
+        "Science": "space.com",
+        "Climate": "nrdc.org"
+        // Add default sources for other categories as needed
+      };
+      source = defaultSourceMap[category] || "bbc.com"
     }
-    
     const validSortByOptions = ["relevancy", "popularity", "publishedAt"];
     const sortByOption = validSortByOptions.includes(sortBy) ? sortBy : "publishedAt";
 
