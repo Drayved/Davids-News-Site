@@ -214,11 +214,11 @@ body {
 
 @media(max-width: 400px){
   .pagination{
-    @apply mx-1 
+    @apply w-64 mx-auto
   }
 
   .page-number-box {
-    @apply px-1.5 py-0 max-w-[10rem] ;
+    @apply  py-0 px-1 w-5;
     
   }
 }
