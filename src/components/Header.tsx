@@ -35,7 +35,7 @@ export default function Header() {
     <div className="header-container">
       <h1 className="header-text">Keep Up To Date With The Latest News.</h1>
       <h1 className="header-title">
-        {headerTitle}
+        {headerTitle !== "" ? headerTitle : "NEWS"}
       </h1>
       <form onSubmit={handleSubmit} className="search-container">
         <input placeholder="Search for news articles..." className="search-bar" type="text" value={searchInput} onChange={handleInput} />
