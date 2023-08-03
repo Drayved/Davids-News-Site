@@ -5,7 +5,7 @@ export const handler = async (event) => {
   try {
     const apiKey = process.env.VITE_NEWS_KEY;
     const { category, subCategory, sortBy } = event.queryStringParameters;
-    console.log("Serverless Function - Received category:", category); 
+    
     
     let source = "";
     if (category === 'politics' && subCategory) {

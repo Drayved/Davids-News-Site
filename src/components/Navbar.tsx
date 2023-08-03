@@ -8,7 +8,7 @@ const navItems = [
   { name: "Sports", path: "/sports" },
   { name: "Health", path: "/health" },
   { name: "Tech", path: "/tech" },
-  { name: "Politics", path: "/politics", subCategories: ["Conservative", "Liberal", "Independent"] },
+  { name: "Politics", path: "/politics", subCategories: ["conservative", "liberal", "independent"] },
   { name: "Entertainment", path: "/entertainment" },
   { name: "Science", path: "/science" },
   { name: "Climate", path: "/climate" },
@@ -34,14 +34,17 @@ export default function Navbar() {
     setCategory(category);
     setSubCategory(""); 
     setShowMenu(false); 
-    window.scrollTo(0, 0)
+    scrollTo(0,0)
+    window.localStorage.setItem('category', category)
   };
 
   const handleSubCategoryClick = (subCategory: string) => {
     setCategory(`politics`)
     setSubCategory(subCategory)
     setShowMenu(false); 
-    window.scrollTo(0, 0)
+    setShowSubMenu(false)
+    scrollTo(0,0)
+    window.localStorage.setItem('subCategory', subCategory)
   };
 
   const toggleSubMenu = () =>{

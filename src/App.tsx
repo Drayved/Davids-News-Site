@@ -1,5 +1,5 @@
 import Layout from "./components/Layout";
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromChildren, Outlet } from "react-router-dom";
 import GetNews from "./components/GetNews";
 
@@ -18,10 +18,25 @@ export default function App() {
   const [subCategory, setSubCategory] = useState("");
   const [sortBy, setSortBy] = useState("publishedAt")
 
+  useEffect(() => {
+    const storedCategory = window.localStorage.getItem('category')
+    const storedSubCategory = window.localStorage.getItem('subCategory')
+    if (storedCategory !== null) {
+      setCategory(storedCategory);
+    }
+    if (storedSubCategory !== null) {
+      setSubCategory(storedSubCategory);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('category', category);
+    window.localStorage.setItem('subCategory', subCategory);
+  }, [category, subCategory]);
+
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path={"/"} element={<Layout />}>
-       <Route path="/world${sortBy ? /sortBy :}" element={<GetNews  />} /> {/* Render GetNews for each category */}
         <Route path="/us-news" element={<GetNews />} />
         <Route path="/sports" element={<GetNews />} />
         {/* Add more routes for each category and sub-category */}

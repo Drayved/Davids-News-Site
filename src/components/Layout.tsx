@@ -2,12 +2,8 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import GetNews from "./GetNews"
 
-
-
-
 export default function Layout() {
   
-
   return (
     <div className="layout">
       <Navbar />
