@@ -34,12 +34,14 @@ export default function Navbar() {
     setCategory(category);
     setSubCategory(""); 
     setShowMenu(false); 
+    window.scrollTo(0, 0)
   };
 
   const handleSubCategoryClick = (subCategory: string) => {
     setCategory(`politics`)
     setSubCategory(subCategory)
     setShowMenu(false); 
+    window.scrollTo(0, 0)
   };
 
   const toggleSubMenu = () =>{
