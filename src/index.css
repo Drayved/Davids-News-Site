@@ -90,12 +90,12 @@ body {
 /* News Cards */
 
 .news-cards-container {
-  @apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 mt-[-24px]
+  @apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 mt-[-24px] 
 
 }
 
 .news-cards {
-  @apply bg-[#fff] rounded-sm overflow-hidden shadow-md;
+  @apply bg-[#fff] rounded-sm overflow-hidden shadow-md max-w-[650px] mx-auto
 }
 
 .news-cards{
@@ -165,6 +165,23 @@ body {
 
 .prev-arrow{
   
+}
+
+/* loading */
+
+.loading-container {
+  @apply flex items-center justify-center
+}
+
+.loading-text {
+  @apply text-3xl font-bold;
+  animation: loadingAnimation 1s infinite;
+}
+
+@keyframes loadingAnimation {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* footer */

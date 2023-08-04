@@ -86,7 +86,7 @@ export default function GetNews() {
       }
     };
     fetchNewsData();
-  }, [category, subCategory, sortBy, currentPage]);
+  }, [category, subCategory, sortBy]);
 
   const totalPages = Math.ceil(articles.length / newsPerPage);
 
@@ -129,7 +129,9 @@ export default function GetNews() {
   return (
     <div>
       {isLoading ? ( 
-        <p>Loading...</p>
+        <div className="loading-container">
+          <div className="loading-text">Loading...</div>
+        </div>
       ) : (
         <div>
           <div className="news-cards-container">
