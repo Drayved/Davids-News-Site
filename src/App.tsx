@@ -16,15 +16,19 @@ export const MyContext = createContext({
 export default function App() {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
-  const [sortBy, setSortBy] = useState("publishedAt")
+  const [sortBy, setSortBy] = useState(() => {
+    // Get the initial sortBy value from localStorage, or default to "publishedAt"
+    const savedSortBy = window.localStorage.getItem("sortBy");
+    return savedSortBy || "publishedAt";
+  })
 
   useEffect(() => {
     const storedCategory = window.localStorage.getItem('category')
     const storedSubCategory = window.localStorage.getItem('subCategory')
-    if (storedCategory !== null) {
+    if (storedCategory !== null && storedCategory !== "") {
       setCategory(storedCategory);
     }
-    if (storedSubCategory !== null) {
+    if (storedSubCategory !== null && storedSubCategory !== "") {
       setSubCategory(storedSubCategory);
     }
   }, []);

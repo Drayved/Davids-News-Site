@@ -64,11 +64,11 @@ body {
 }
 
 .search-bar{
-  @apply py-1 rounded-md px-5 
+  @apply py-1 rounded-md px-3 
 }
 
 .search-btn{
-  @apply bg-[#007bff] rounded-md text-[#fff] px-5 ml-2 py-1
+  @apply bg-[#007bff] rounded-md text-[#fff] px-5 ml-1 py-1
 }
 
 .search-btn:hover{

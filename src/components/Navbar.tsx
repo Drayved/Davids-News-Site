@@ -9,7 +9,6 @@ const navItems = [
   { name: "Health", path: "/health" },
   { name: "Tech", path: "/tech" },
   { name: "Politics", path: "/politics", subCategories: ["conservative", "liberal", "independent"] },
-  { name: "Entertainment", path: "/entertainment" },
   { name: "Science", path: "/science" },
   { name: "Climate", path: "/climate" },
   
