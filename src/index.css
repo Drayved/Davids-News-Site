@@ -228,7 +228,7 @@ body {
   }
 
   .page-number-box {
-    @apply  py-0 px-1 w-5;
+    @apply  py-0.5 px-1 w-5;
     
   }
 }
