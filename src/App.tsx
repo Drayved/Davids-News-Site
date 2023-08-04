@@ -15,7 +15,7 @@ export const MyContext = createContext({
 
 export default function App() {
   const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("general");
   const [sortBy, setSortBy] = useState(() => {
     // Get the initial sortBy value from localStorage, or default to "publishedAt"
     const savedSortBy = window.localStorage.getItem("sortBy");

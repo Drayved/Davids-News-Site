@@ -20,7 +20,7 @@ export default function GetNews() {
   const { category, subCategory, sortBy } = useContext(MyContext);
   const newsPerPage = 20;
   const [articles, setArticles] = useState<NewsItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [currentPage, setCurrentPage] = useState(1)
     
@@ -50,7 +50,6 @@ export default function GetNews() {
     const fetchNewsData = async () => {
       try {
         setIsLoading(true)
-      
         let apiUrl = `https://davids-news-site.netlify.app/.netlify/functions/fetchNews`;
         
         if (category) {
@@ -59,11 +58,8 @@ export default function GetNews() {
           if (subCategory) {
             apiUrl += `&subCategory=${subCategory}`;
           }
-        }else {
-          setTimeout(() => {
-            apiUrl += `?category=general`
-          }, 1000);
-          ;
+        }else if(category === ""){ 
+            apiUrl += `?category=general`   
         }
         apiUrl += `&sortBy=${sortBy}`;
        
@@ -83,7 +79,10 @@ export default function GetNews() {
         console.error("Error fetching news data:", error);
         setIsLoading(false)
       } finally{
-        setIsLoading(false) 
+        setTimeout(() => {
+          setIsLoading(false) 
+        }, 300);
+        
       }
     };
     fetchNewsData();
