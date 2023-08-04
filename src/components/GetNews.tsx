@@ -22,10 +22,8 @@ export default function GetNews() {
   const [articles, setArticles] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true)
 
-  const [currentPage, setCurrentPage] = useState(() => {
-    const savedPage = localStorage.getItem("currentPage");
-    return savedPage ? parseInt(savedPage, 10) : 1;
-  });
+  const [currentPage, setCurrentPage] = useState(1)
+    
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => {
@@ -93,12 +91,14 @@ export default function GetNews() {
 
   const totalPages = Math.ceil(articles.length / newsPerPage);
 
+  useEffect(()=> {
+    setCurrentPage(1)
+  },[sortBy, category])
+
   useEffect(() => {
     localStorage.setItem("articles", JSON.stringify(articles));
-    localStorage.setItem("currentPage", currentPage.toString())
-    localStorage.setItem("sortBy", sortBy)
-  }, [articles, currentPage, sortBy]);
-
+    localStorage.setItem("sortBy", sortBy);
+  }, [articles, category, sortBy]);
 
 
   useEffect(() => {
