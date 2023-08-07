@@ -249,7 +249,14 @@ body {
   }
 
   .page-number-box {
-    @apply  py-0.5 px-1 w-5;
-    
+    @apply  py-0.5 px-1 w-5; 
+  }
+
+  .header-text{
+    @apply text-2xl
+  }
+
+  .header-title{
+    @apply text-lg
   }
 }
