@@ -245,11 +245,11 @@ body {
 
 @media(max-width: 400px){
   .pagination{
-    @apply w-64 mx-auto
+    @apply w-[100%] mx-auto
   }
 
   .page-number-box {
-    @apply  py-0.5 px-1 w-5; 
+    @apply  py-0.5 px-0 w-7; 
   }
 
   .header-text{
@@ -258,5 +258,19 @@ body {
 
   .header-title{
     @apply text-lg
+  }
+
+  .page-btns{
+    @apply mx-auto
+  }
+}
+
+@media(max-width: 352px){
+  .page-number-box{
+    @apply  w-6
+  }
+
+  .news-cards{
+    @apply w-[95%]
   }
 }
