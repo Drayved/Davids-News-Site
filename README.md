@@ -20,5 +20,5 @@ You can see a live demo of the news site [here]([https://your-demo-url.com](http
 ## Screenshots
 
 ![Screenshot 1](/screenshots/screenshot1.JPG)
-![Screenshot 2](/screenshots/screenshot2.png)
+![Screenshot 2](/screenshots/screenshot2.JPG)
 
