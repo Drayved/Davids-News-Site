@@ -1,35 +1,28 @@
-import { MyContext } from "../App";
-import { useContext, useState } from "react";
-
-
+import { MyContext } from "../App"
+import { useContext, useState } from "react"
 
 export default function Header() {
-  const { category, setCategory, subCategory, setSortBy, sortBy } = useContext(MyContext);
-  const [searchInput, setSearchInput] = useState("");
+  const { category, setCategory, subCategory, setSortBy, sortBy } = useContext(MyContext)
+  const [searchInput, setSearchInput] = useState("")
   
-
   function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setCategory(searchInput);
-    console.log(category);
+    e.preventDefault()
+    setCategory(searchInput)
   }
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    setSearchInput(e.target.value);
+    e.preventDefault()
+    setSearchInput(e.target.value)
   }
 
   function handleSortingOption(e: React.ChangeEvent<HTMLSelectElement>) {
-    const sortByValue = e.target.value;
-    setSortBy(sortByValue);
-
-    // Update the URL query parameter for 'sortBy'
-    
+    const sortByValue = e.target.value
+    setSortBy(sortByValue)
   }
 
   const headerTitle = subCategory
   ? subCategory.toUpperCase()
-  : category.toUpperCase();
+  : category.toUpperCase()
 
   return (
     <div className="header-container">
@@ -49,5 +42,5 @@ export default function Header() {
         <option value="popularity">Popular</option>
       </select>
     </div>
-  );
+  )
 }

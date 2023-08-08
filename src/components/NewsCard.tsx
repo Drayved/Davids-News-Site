@@ -1,23 +1,23 @@
-import { NewsItem } from "./GetNews";
+import { NewsItem } from "./GetNews"
 
 
 
 export default function NewsCard({ newsItem }: { newsItem: NewsItem}) {
   const formatPublishedAt = (publishedAt: string) => {
-    const date = new Date(publishedAt);
+    const date = new Date(publishedAt)
     const options = {
-      timeZone: "America/New_York", // Set the time zone to American Eastern Standard Time (EST)
+      timeZone: "America/New_York", 
       year: "numeric" as const,
       month: "long" as const,
       day: "numeric" as const,
       hour: "numeric" as const,
       minute: "numeric" as const
-    };
-    return date.toLocaleString("en-US", options);
-  };
+    }
+    return date.toLocaleString("en-US", options)
+  }
 
   if (!newsItem.urlToImage) {
-    return null; // Return null to skip rendering the card
+    return null 
   }
 
   return (
@@ -39,5 +39,5 @@ export default function NewsCard({ newsItem }: { newsItem: NewsItem}) {
         </a>
       </div>
     </div>
-  );
+  )
 }

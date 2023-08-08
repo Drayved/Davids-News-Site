@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from "react";
-import NewsCard from "./NewsCard";
-import { MyContext } from "../App";
+import { useState, useEffect, useContext } from "react"
+import NewsCard from "./NewsCard"
+import { MyContext } from "../App"
 
 
 export interface NewsItem {
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
+  title: string
+  description: string
+  url: string
+  urlToImage: string
+  publishedAt: string
   source: {
     id: string,
     name: string
@@ -16,10 +16,10 @@ export interface NewsItem {
 }
 
 export default function GetNews() {
-  const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const { category, subCategory, sortBy } = useContext(MyContext);
-  const newsPerPage = 20;
-  const [articles, setArticles] = useState<NewsItem[]>([]);
+  const [newsData, setNewsData] = useState<NewsItem[]>([])
+  const { category, subCategory, sortBy } = useContext(MyContext)
+  const newsPerPage = 20
+  const [articles, setArticles] = useState<NewsItem[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -27,104 +27,104 @@ export default function GetNews() {
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => {
-      const nextPage = prevPage + 1;
-      return nextPage <= totalPages ? nextPage : prevPage;
-    });
-  };
+      const nextPage = prevPage + 1
+      return nextPage <= totalPages ? nextPage : prevPage
+    })
+  }
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => {
-      const prevPageNumber = prevPage - 1;
-      return prevPageNumber >= 1 ? prevPageNumber : prevPage;
-    });
-  };
+      const prevPageNumber = prevPage - 1
+      return prevPageNumber >= 1 ? prevPageNumber : prevPage
+    })
+  }
 
   useEffect(() => {
-    const savedArticles = localStorage.getItem("articles");
+    const savedArticles = localStorage.getItem("articles")
     if (savedArticles) {
-      setArticles(JSON.parse(savedArticles));
+      setArticles(JSON.parse(savedArticles))
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     const fetchNewsData = async () => {
       try {
         setIsLoading(true)
-        let apiUrl = `https://davids-news-site.netlify.app/.netlify/functions/fetchNews`;
+        let apiUrl = `https://davids-news-site.netlify.app/.netlify/functions/fetchNews`
         
         if (category) {
-          apiUrl += `?category=${category}`;
+          apiUrl += `?category=${category}`
 
           if (subCategory) {
-            apiUrl += `&subCategory=${subCategory}`;
+            apiUrl += `&subCategory=${subCategory}`
           }
         }else if(category === ""){ 
             apiUrl += `?category=general`   
         }
-        apiUrl += `&sortBy=${sortBy}`;
+        apiUrl += `&sortBy=${sortBy}`
        
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
           },
-        });
+        })
 
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Network response was not ok")
         }
-        const responseData = await response.json();
-        const fetchedArticles = responseData.articles;
-        setArticles(fetchedArticles);
+        const responseData = await response.json()
+        const fetchedArticles = responseData.articles
+        setArticles(fetchedArticles)
       } catch (error) {
-        console.error("Error fetching news data:", error);
+        console.error("Error fetching news data:", error)
         setIsLoading(false)
       } finally{
         setTimeout(() => {
           setIsLoading(false) 
-        }, 300);
+        }, 300)
         
       }
-    };
-    fetchNewsData();
-  }, [category, subCategory, sortBy]);
+    }
+    fetchNewsData()
+  }, [category, subCategory, sortBy])
 
-  const totalPages = Math.ceil(articles.length / newsPerPage);
+  const totalPages = Math.ceil(articles.length / newsPerPage)
 
   useEffect(()=> {
     setCurrentPage(1)
   },[sortBy, category])
 
   useEffect(() => {
-    localStorage.setItem("articles", JSON.stringify(articles));
-    localStorage.setItem("sortBy", sortBy);
-  }, [articles, category, sortBy]);
+    localStorage.setItem("articles", JSON.stringify(articles))
+    localStorage.setItem("sortBy", sortBy)
+  }, [articles, category, sortBy])
 
 
   useEffect(() => {
-    const startIndex = (currentPage - 1) * newsPerPage;
-    const endIndex = startIndex + newsPerPage;
-    const newsSubset = articles.slice(startIndex, endIndex);
-    setNewsData(newsSubset);
-  }, [articles, currentPage, newsPerPage]);
+    const startIndex = (currentPage - 1) * newsPerPage
+    const endIndex = startIndex + newsPerPage
+    const newsSubset = articles.slice(startIndex, endIndex)
+    setNewsData(newsSubset)
+  }, [articles, currentPage, newsPerPage])
 
   
   const getPagesToShow = () => {
-    const pagesToShow = [];
+    const pagesToShow = []
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) {
-        pagesToShow.push(i);
+        pagesToShow.push(i)
       }
     } else {
       if (currentPage <= 3) {
-        pagesToShow.push(1, 2, 3, "...", totalPages);
+        pagesToShow.push(1, 2, 3, "...", totalPages)
       } else if (currentPage >= totalPages - 2) {
-        pagesToShow.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
+        pagesToShow.push(1, "...", totalPages - 2, totalPages - 1, totalPages)
       } else {
-        pagesToShow.push(1, "...", currentPage, "...", totalPages);
+        pagesToShow.push(1, "...", currentPage, "...", totalPages)
       }
     }
-    return pagesToShow;
-  };
+    return pagesToShow
+  }
 
   return (
     <div>
@@ -185,5 +185,5 @@ export default function GetNews() {
         </div>
       )}
     </div>
-  );
+  )
 }  

@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
-import Header from "./Header";
+import Navbar from "./Navbar"
+import Header from "./Header"
 import GetNews from "./GetNews"
 
 export default function Layout() {
@@ -12,9 +12,9 @@ export default function Layout() {
         <GetNews />
       </div>
       <footer className="footer">
-        <p>&copy; 2023 Your News Site. All rights reserved.</p>
+        <p>&copy 2023 Your News Site. All rights reserved.</p>
       </footer>
     </div>
-  );
+  )
 }
 
